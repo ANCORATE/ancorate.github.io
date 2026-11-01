@@ -1,11 +1,6 @@
-You are seeing the #ANCORATE UPDATE Repository.
-All content is © 2026 by Samuel Jonathan Tirwa and Gabriel Leiria-Roussin.
+# ANCORATE
 
-ANY ABUSIVE USAGE OF THE CONTENT OF THIS REPOSITORY WILL BE PROSECUTED TO THE FULL EXTENT OF GOVERNMENT LAW.
+EncryptHome is now open source (MIT).
 
-TRYING TO CRACK, REVERSE-ENGINEER, OR GAIN ACCESS ON ANY OF THE SOURCE CODE WILL BE PROSECUTED.
-
-
-
-The ANCORATE Project.
-
+Repository: https://github.com/ANCORATE/EncryptHome
+Releases: https://github.com/ANCORATE/EncryptHome/releases
