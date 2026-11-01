@@ -159,9 +159,9 @@
   <header class="hero">
     <div class="logo">ANCORATE</div>
     <p class="tagline">Secure encryption for your files</p>
-    <a href="https://github.com/ANCORATE/EncryptHome/releases/latest" class="download-btn">Download EncryptHome</a>
+    <a id="download-btn" href="https://github.com/ANCORATE/EncryptHome/releases/latest" class="download-btn">Download EncryptHome</a>
     <br>
-    <span class="version-badge">v27.0 &middot; Capsule</span>
+    <span id="version-badge" class="version-badge">v27.0 &middot; Capsule</span>
   </header>
 
   <main class="content">
@@ -230,12 +230,42 @@
       </ul>
     </section>
 
+  <section id="release-notes" style="max-width:740px;margin:0 auto 3rem;padding:0 1.5rem;">
+    <h2>Latest Release Notes</h2>
+    <pre id="release-body" style="white-space:pre-wrap;color:#aaa;font-size:0.9rem;">Loading...</pre>
+  </section>
+
   </main>
 
   <footer class="legal">
     <p>&copy; 2026 Samuel Jonathan Tirwa &amp; Gabriel Leiria-Roussin. MIT License.</p>
     <p>Open source under the MIT License. See the GitHub repository for details.</p>
   </footer>
+
+
+<script>
+  (async () => {
+    try {
+      const res = await fetch("https://api.github.com/repos/ANCORATE/EncryptHome/releases/latest");
+      if (!res.ok) return;
+      const data = await res.json();
+      const btn = document.getElementById("download-btn");
+      const badge = document.getElementById("version-badge");
+      const body = document.getElementById("release-body");
+      if (badge && data.tag_name) badge.textContent = data.tag_name + " · Capsule";
+      const assets = data.assets || [];
+      let asset = assets.find(a => /windows/i.test(a.name) && a.name.endsWith(".exe"))
+        || assets.find(a => /macos/i.test(a.name))
+        || assets.find(a => /linux/i.test(a.name))
+        || assets[0];
+      if (btn && asset && asset.browser_download_url) btn.href = asset.browser_download_url;
+      if (body) body.textContent = data.body || "No release notes available.";
+    } catch (e) {
+      const body = document.getElementById("release-body");
+      if (body) body.textContent = "Release notes unavailable.";
+    }
+  })();
+</script>
 
 </body>
 </html>
